@@ -1,8 +1,8 @@
-;
+import { fetchData } from '../Services/fetch.js/fetch';
 
 export const SET_URL = 'SET_URL';
 export const setURL = () => dispatch => {
-  return fetchResponse()
+  return fetchData()
     .then(url => {
       dispatch({
         type: SET_URL,
@@ -13,7 +13,7 @@ export const setURL = () => dispatch => {
 
 export const SET_METHOD = 'SET_METHOD';
 export const setMethod = () => dispatch => {
-  return fetchResponse()
+  return fetchData()
     .then(method => {
       dispatch({
         type: SET_METHOD,
@@ -24,7 +24,7 @@ export const setMethod = () => dispatch => {
 
 export const SET_BODY = 'SET_BODY';
 export const setBody = () => dispatch => {
-  return fetchResponse()
+  return fetchData()
     .then(body => {
       dispatch({
         type: SET_BODY,
@@ -35,7 +35,7 @@ export const setBody = () => dispatch => {
 
 export const SET_REQUESTS = 'SET_REQUESTS';
 export const setRequests = () => dispatch => {
-  return fetchResponse()
+  return fetchData()
     .then(requests => {
       dispatch({
         type: SET_REQUESTS,
@@ -46,7 +46,7 @@ export const setRequests = () => dispatch => {
 
 export const SET_DISABLE = 'SET_DISABLE';
 export const setDisable = () => dispatch => {
-  return fetchResponse()
+  return fetchData()
     .then(disable => {
       dispatch({
         type: SET_DISABLE,
@@ -55,13 +55,13 @@ export const setDisable = () => dispatch => {
     });
 };
 
-export const SET_RESPONSE = 'SET_RESPONSE';
-export const setResponse = () => dispatch => {
-  return fetchResponse()
-    .then(response => {
+export const SET_DatafetchData = 'SET_DatafetchData';
+export const setDatafetchData = () => dispatch => {
+  return fetchData()
+    .then(DatafetchData => {
       dispatch({
-        type: SET_RESPONSE,
-        payload: response
+        type: SET_DatafetchData,
+        payload: DatafetchData
       });
     });
 };
