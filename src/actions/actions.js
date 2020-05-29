@@ -1,67 +1,38 @@
-import { fetchData } from '../Services/fetch.js/fetch';
+import { fetchData } from '../Services/fetch/fetch';
 
-export const SET_URL = 'SET_URL';
-export const setURL = () => dispatch => {
-  return fetchData()
-    .then(url => {
-      dispatch({
-        type: SET_URL,
-        payload: url
-      });
+export const SET_INPUT = 'SET_INPUT';
+export const setInput = ({ target }) => ({
+  type: SET_INPUT,
+  payload: target
+});
+
+export const SET_RESPONSE = 'SET_RESPONSE';
+export const setResponse = (url, method, body, headers) => dispatch => {
+  return fetchData(url, method, body, headers)
+    .then(res => {
+      dispatch({ type: SET_RESPONSE, payload: res });
     });
 };
 
-export const SET_METHOD = 'SET_METHOD';
-export const setMethod = () => dispatch => {
-  return fetchData()
-    .then(method => {
-      dispatch({
-        type: SET_METHOD,
-        payload: method
-      });
-    });
+export const LOAD_REQUESTS = 'LOAD_REQUESTS';
+export const loadRequests = () => {
+  const savedRequests = JSON.parse(localStorage.getItem('requests'));
+  return ({
+    type: LOAD_REQUESTS,
+    payload: savedRequests ? savedRequests : []
+  });
 };
 
-export const SET_BODY = 'SET_BODY';
-export const setBody = () => dispatch => {
-  return fetchData()
-    .then(body => {
-      dispatch({
-        type: SET_BODY,
-        payload: body
-      });
-    });
-};
+export const SET_REQUEST = 'SET_REQUEST';
+export const setRequest = (request) => ({
+  type: SET_REQUEST,
+  payload: request
+});
 
-export const SET_REQUESTS = 'SET_REQUESTS';
-export const setRequests = () => dispatch => {
-  return fetchData()
-    .then(requests => {
-      dispatch({
-        type: SET_REQUESTS,
-        payload: requests
-      });
-    });
-};
-
-export const SET_DISABLE = 'SET_DISABLE';
-export const setDisable = () => dispatch => {
-  return fetchData()
-    .then(disable => {
-      dispatch({
-        type: SET_DISABLE,
-        payload: disable
-      });
-    });
-};
-
-export const SET_DatafetchData = 'SET_DatafetchData';
-export const setDatafetchData = () => dispatch => {
-  return fetchData()
-    .then(DatafetchData => {
-      dispatch({
-        type: SET_DatafetchData,
-        payload: DatafetchData
-      });
-    });
+export const RESET_REQUESTS = 'RESET_REQUESTS';
+export const resetRequests = () => {
+  localStorage.clear();
+  return ({
+    type: RESET_REQUESTS
+  });
 };
